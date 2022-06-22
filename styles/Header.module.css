@@ -1,0 +1,144 @@
+.main {
+  position: relative;
+  background-color: var(--soremei-ghavi);
+  width: auto;
+  height: 4rem;
+  z-index: 1000;
+}
+.main:hover {
+  color: var(--narenji);
+}
+.menuIcon {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.5rem;
+  border: 1px solid var(--sefid-color);
+  border-radius: 10%;
+  cursor: pointer;
+  color: var(--sefid-color);
+}
+
+.menuIcon:hover {
+  color: var(--narenji);
+  border: 1px solid var(--narenji);
+}
+
+/* .menu:hover {
+    background-color: var(--narenji);
+} */
+
+.welcome {
+  width: 16rem;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  cursor: pointer;
+  color: var(--sefid-color);
+}
+
+.welcome:hover {
+  color: var(--narenji);
+}
+
+.ul {
+  width: 30%;
+  /* background-color: red; */
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  /* margin-left: 2rem; */
+  position: absolute;
+  left: 5rem;
+  top: 1.5rem;
+}
+
+.mobileNav {
+  position: absolute;
+  z-index: 1000;
+  top: 4rem;
+  background-color: var(--sormei-yavash);
+  width: 100%;
+  height: 19rem;
+}
+
+.mobileUl {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  height: 15rem;
+}
+
+/* .mobileUl:hover {
+} */
+
+.mobileUl li {
+  color: var(--sefid-color);
+  margin-bottom: 2rem;
+  font-size: 25px;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--sefid-color);
+}
+
+.mobileUl li:hover {
+  cursor: pointer;
+  border-bottom: 1px solid var(--narenji);
+  color: var(--narenji);
+}
+
+.mobileUl li:first-child {
+  margin-top: 2rem;
+}
+.desktapUl {
+  display: none;
+}
+
+@media screen and (min-width: 420px) {
+  .menuIcon {
+    display: none;
+  }
+  .welcome {
+    font-size: 12px;
+  }
+
+  .desktapNav {
+    color: var(--sefid-color);
+  }
+  .desktapUl {
+    /* background-color: red; */
+    position: absolute;
+    top: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    font-size: 15px;
+    list-style: none;
+    right: 2rem;
+  }
+
+  .welcome {
+    font-size: 15px;
+  }
+
+  .desktapUl li:hover {
+    color: var(--narenji);
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 720px) {
+
+  .desktapUl {
+    font-size: 25px;
+  }
+  .welcome {
+    /* background-color: red; */
+    font-size: 25px;
+    width: 20rem;
+  }
+  
+}

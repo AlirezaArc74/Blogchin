@@ -1,0 +1,13 @@
+.main {
+  height: 400px;
+}
+
+.image {
+  height: 400px;
+}
+
+/* @media screen and (min-width: 420px) {
+  .image {
+    height: 378px;
+  }
+} */

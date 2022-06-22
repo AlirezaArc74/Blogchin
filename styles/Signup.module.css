@@ -1,0 +1,162 @@
+.image {
+    width: 100vw;
+    height: 100vh;
+   
+    opacity: .4;
+
+}
+
+.imageContainer {
+    background-color: var(--soremei-ghavi);
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+   
+}
+
+.signup {
+    /* margin-left: 15px; */
+    /* background-color: var(--sefid-color); */
+    backdrop-filter: blur(15px);
+    border: 2px solid black;
+    top: 100px;
+    left: 65px;
+    position: absolute;
+     width: 280px;
+    height: 400px; 
+}
+
+.container {
+    padding-left: 40px;
+    padding-top: 40px;
+}
+
+.usernameInput {
+    background-color: var(--soremei-ghavi);
+    margin: 10px 0px 10px 0;
+    border: 1px solid var(--sefid-color);
+    border-radius: 70px;
+    padding: 10px;
+    padding-left: 20px;
+    width: 200px;
+    color: var(--sefid-color);
+    
+    /* color: var(--sefid-color); */
+}
+
+.usernameInput:focus {
+    background-color: var(--sormei-yavash);
+    outline: none;
+    border:1px solid var(--soremei-ghavi);
+    color: var(--sefid-color);
+}
+
+.usernameInput::placeholder {
+    color: var(--sefid-color);
+}
+
+
+.nameInput {
+    background-color: var(--soremei-ghavi);
+    margin: 10px 0px 10px 0;
+    border: 1px solid var(--sefid-color);
+    border-radius: 70px;
+    padding: 10px;
+    padding-left: 20px;
+    width: 200px;
+    color: var(--sefid-color);
+    
+    /* color: var(--sefid-color); */
+}
+
+.nameInput:focus {
+    background-color: var(--sormei-yavash);
+    outline: none;
+    border:1px solid var(--soremei-ghavi);
+    color: var(--sefid-color);
+
+}
+
+.nameInput::placeholder {
+    color: var(--sefid-color);
+}
+
+.passwordInput {
+    background-color: var(--soremei-ghavi);
+    margin: 10px 0px 10px 0;
+    border: 1px solid var(--sefid-color);
+    border-radius: 70px;
+    padding: 10px;
+    padding-left: 20px;
+    width: 175px;
+    color: var(--sefid-color);
+    margin-top: 20px;
+}
+
+.passwordInput:focus {
+    background-color: var(--sormei-yavash);
+    outline: none;
+    border:1px solid var(--soremei-ghavi);
+    color: var(--sefid-color);
+
+}
+
+.passwordInput::placeholder {
+    color: var(--sefid-color);
+}
+
+.visibilityIcon {
+    position: absolute;
+    top: 180px;right: 35px;
+    cursor: pointer;
+}
+
+
+.btn {
+    background-color: var(--soremei-ghavi);
+    margin: 10px 0px 10px 0;
+    border: 1px solid var(--sefid-color);
+    border-radius: 70px;
+    padding: 10px;
+    width: 200px;
+    color: var(--sefid-color);
+    margin-top: 30px;
+}
+
+.btn:hover {
+    background-color: var(--sormei-yavash);
+    border:1px solid var(--soremei-ghavi);
+    color: var(--sefid-color);
+    cursor: pointer;
+}
+
+.backClick {
+    background-color: var(--soremei-ghavi);
+    margin: 10px 0px 10px 0;
+    border: 1px solid var(--sefid-color);
+    border-radius: 70px;
+    padding: 10px;
+    width: 200px;
+    color: var(--sefid-color);
+    margin-top: 30px;
+}
+
+.backClick:hover {
+    background-color: var(--sormei-yavash);
+    border:1px solid var(--soremei-ghavi);
+    color: var(--sefid-color);
+    cursor: pointer;
+}
+
+@media screen and (min-width: 720px) {
+    .signup {
+        left: 210px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+    .signup {
+        left: 550px;
+    }
+}

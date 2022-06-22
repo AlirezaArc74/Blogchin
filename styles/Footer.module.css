@@ -1,0 +1,7 @@
+.main {
+    position: absolute;
+    bottom: 0rem;
+    background-color: var(--soremei-ghavi);
+    width: 100%;
+    height: 100px;
+}

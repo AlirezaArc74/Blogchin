@@ -1,0 +1,67 @@
+.main {
+  position: absolute;
+  background-color: var(--sormei-yavash);
+  width: 100%;
+  bottom: 100px;
+}
+
+.loginHeader {
+  color: var(--sefid-color);
+  font-weight: bold;
+  text-align: center;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  width: 20rem;
+  font-size: 17px;
+}
+
+
+.btnHolder {
+  /* background-color: red; */
+  margin-left: 70px;
+  margin-top: 30px;
+  width: 240px;
+}
+
+.btn {
+  color: black;
+  width: 15rem;
+  margin-bottom: 2rem;
+  height: 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tokenExist {
+  position: absolute;
+  background-color: red;
+}
+
+.btn:hover {
+  color: var(--sefid-color);
+  background-color: var(--narenji);
+}
+
+@media screen and (min-width: 420px) {
+  
+}
+
+
+/* @media screen and (min-width: 720px) {
+  .main {
+    position: relative;
+    height: 20%;
+    top: 17rem;
+  }
+  .btnHolder {
+    margin-left: 6rem;
+    width: 30%;
+  }
+  .loginHeader {
+    font-size: 19px;
+    width: 30%;
+    margin-left: 3rem;
+  }
+} */
