@@ -28,7 +28,9 @@ const Header = () => {
                 <Link href="/users">
                   <li>Users </li>
                 </Link>
-                <li>About </li>
+                <Link href="/dashboard">
+                  <li>Dashboard </li>
+                </Link>
               </ul>
             </div>
           </>
@@ -42,10 +44,11 @@ const Header = () => {
             <Link href="/users">
               <li>Users </li>
             </Link>
-            <li>About </li>
+            <Link href="/dashboard">
+              <li>Dashboard </li>
+            </Link>
           </ul>
         </div>
-
       </section>
     </>
   );

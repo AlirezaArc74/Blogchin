@@ -1,0 +1,102 @@
+.main {
+  position: absolute;
+  
+  left: 10px;
+  top: 100px;
+  /* z-index: 999; */
+  /* backdrop-filter: blur(15px); */
+  border: 1px solid black;
+  background-color: var(--sefid-color);
+  width: 70%;
+  height: 300px;
+}
+
+.avatar {
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+}
+
+.inpFile {
+  background-color: red;
+  /* position: absolute;
+  margin-left: 50px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border: 1px solid black;
+  outline: none;
+  color: transparent;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-size: 10px;
+  cursor: pointer; */
+}
+.label {
+  background-color: aqua;
+  /* position: absolute; */
+  /* left: 50px; */
+}
+
+.nameInp {
+    background-color: inherit;
+    padding: 4px;
+    font-size: 14px;
+
+}
+.nameHolder {
+    width: 220px;
+    justify-content: space-around;
+    /* background-color: blue; */
+    display: flex;
+    margin: 20px;
+}
+
+.usernameInp {
+    background-color: inherit;
+    padding: 4px;
+    font-size: 14px;
+    margin-left: 5px;
+    outline: none;
+    
+}
+.usernameHolder {
+    width: 220px;
+    justify-content: space-between;
+    /* background-color: blue; */
+    display: flex;
+    margin: 20px;
+
+}
+
+.bioInp {
+    background-color: inherit;
+    /* padding: 4px; */
+    font-size: 14px;
+
+    margin-right: -35px;
+    margin-left: 5px;
+    width: 250px;
+    height: 40px;
+    margin-top: -1px;
+    outline: none;
+}
+.bioHolder {
+    width: 220px;
+    justify-content: space-between;
+    /* background-color: blue; */
+    display: flex;
+    margin: 20px;
+    /* outline: none; */
+
+}
+
+@media screen and (min-width: 730px) {
+    .profileHolder {
+        position: absolute;
+        right: 30px;
+        top: 0;
+
+    }
+    
+}

@@ -58,17 +58,17 @@
 
 .passwordInput {
     background-color: var(--soremei-ghavi);
-    margin: 10px 0px 10px 0;
+    margin: 10px 0px 10px -5px;
     border: 1px solid var(--sefid-color);
     border-radius: 70px;
-    padding: 10px;
+    padding: 2px;
     padding-left: 20px;
-    width: 175px;
+    width: 205px;
     color: var(--sefid-color);
     margin-top: 20px;
 }
 
-.passwordInput:focus {
+.passwordInput:Mui-focused  {
     background-color: var(--sormei-yavash);
     outline: none;
     border:1px solid var(--soremei-ghavi);
@@ -80,8 +80,10 @@
     color: var(--sefid-color);
 }
 .visibilityIcon {
-    position: absolute;
-    top: 123px;right: 35px;
+    /* position: absolute;
+    top: 123px;right: 35px; */
+    padding-right: 10px;
+    color: var(--sefid-color);
     cursor: pointer;
 }
 

@@ -8,21 +8,28 @@ body {
   --soremei-ghavi: rgb(17, 43, 60);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
 }
-/* @-webkit-keyframes autofill {
+@-webkit-keyframes autofill {
   0%,100% {
       color: #666;
       background: transparent;
   }
 }
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px var(--soremei-ghavi) inset !important;
-} */
+}
 
+.passwordInput:Mui-focused  {
+  background-color: var(--sormei-yavash);
+  outline: none;
+  border:1px solid var(--soremei-ghavi);
+  color: var(--sefid-color);
+
+}
 
 
 a {

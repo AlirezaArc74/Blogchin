@@ -4,7 +4,7 @@ import styles from "../styles/Login.module.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Cookies from "universal-cookie";
 import Image from "next/image";
-import { AllState } from "../UserContext";
+import { InputAdornment, FormControl, Input } from "@mui/material";
 
 const axios = require("axios");
 
@@ -12,23 +12,23 @@ const Login = () => {
   const [loginUsernameInput, setLoginUsernameInput] = useState("");
   const [loginPasswordInput, setLoginPasswordInput] = useState("");
   const [visibility, setVisibility] = useState(false);
-  const [isUserLogedIn, setIsUserLogedIn] = useState("")
+  const [isUserLogedIn, setIsUserLogedIn] = useState("");
 
   // const { token, setToken } = AllState();
 
   const route = useRouter();
   const cookies = new Cookies();
-  const token = cookies.get("ut")
+  const token = cookies.get("ut");
 
   const visibilityIconClick = () => {
     setVisibility(!visibility);
   };
 
   useEffect(() => {
-    setIsUserLogedIn(token)
-  },[token])
+    setIsUserLogedIn(token);
+  }, [token]);
 
-  if(isUserLogedIn) route.push("/dashboard")
+  if (isUserLogedIn) route.push("/dashboard");
 
   const loginSubmit = () => {
     axios
@@ -48,12 +48,13 @@ const Login = () => {
     setLoginUsernameInput("");
     setTimeout(() => {
       route.push("/dashboard");
-    },2000)
+    }, 2000);
 
     console.log(token);
     // const boro = () => {
     // }
   };
+
   return (
     <>
       <section>
@@ -71,26 +72,56 @@ const Login = () => {
       <section className={styles.login}>
         <div className={styles.container}>
           <input
+            autoComplete="off"
             onChange={(e) => setLoginUsernameInput(e.target.value)}
             value={loginUsernameInput}
             type="text"
             placeholder="Username"
             className={styles.usernameInput}
           />
-          <input
+          {/* <input
             onChange={(e) => setLoginPasswordInput(e.target.value)}
             value={loginPasswordInput}
             type={visibility ? "text" : "password"}
             placeholder="Password"
             className={styles.passwordInput}
+            disableUnderline={true}
           />
-
           <VisibilityIcon
-            onClick={() => {
-              visibilityIconClick();
-            }}
-            className={styles.visibilityIcon}
-          />
+              onClick={() => {
+                visibilityIconClick();
+              }}
+              className={styles.visibilityIcon}
+            /> */}
+          <FormControl
+            // className={styles.passwordInput}
+            sx={{ m: 0.5, width: "18ch" }}
+            variant="standard"
+            auto
+          >
+            <Input
+              className={styles.passwordInput}
+              placeholder="Password"
+              required="true"
+              autoComplete="new-password"
+              disableUnderline={true}
+              id="standard-adornment-password"
+              type={visibility ? "text" : "password"}
+              value={loginPasswordInput}
+              onChange={(e) => setLoginPasswordInput(e.target.value)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <VisibilityIcon
+                    className={styles.visibilityIcon}
+                    fontSize="large"
+                    onClick={() => {
+                      visibilityIconClick();
+                    }}
+                  />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
 
           <br />
           <button className={styles.btn} onClick={() => loginSubmit()}>

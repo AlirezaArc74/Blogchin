@@ -1,26 +1,47 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import styles from "../../styles/dashboard.module.css";
 import background from "./../../public/images/dashboard.jpg";
-import nextConfig from "../../next.config";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
 import { AllState } from "../../UserContext";
 
-const Dashboard = () => {
-  const [userData, setUserData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [mobileNavbar, setMobileNavbar] = useState(false);
+// export const getServerSideProps = async ({req, response}) => {
 
-  const { data, setData } = AllState();
+//   console.log(req)
+//   const cookies = new Cookies(req.headers.cookie);
+//   const token = `ut ${cookies.get("ut")}`;
+
+//   const res = await fetch("http://localhost:4000/user/me", {
+//           method: "POST", // or 'PUT'
+//           headers: {
+//             "Content-Type": "application/json",
+//             auth: token,
+//           },
+//           body: JSON.stringify({}),
+//         })
+
+//     const data = await res.json()
+
+//     return {
+//       props: {userData: data}
+//     }
+// }
+
+const Dashboard = () => {
+  const [mobileNavbar, setMobileNavbar] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState({})
+  const [file, setFile] = useState(null);
 
   const cookies = new Cookies();
   const route = useRouter();
-  const token = cookies.get("ut");
+  const token = `ut ${cookies.get("ut")}`;
 
+  // console.log(data)
   // useEffect(() => {
   //   if(!token) return route.push('/')
   // },[])
@@ -31,7 +52,7 @@ const Dashboard = () => {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
-          auth: `ut ${cookies.get("ut")} `,
+          auth: token,
         },
         body: JSON.stringify({}),
       })
@@ -44,7 +65,6 @@ const Dashboard = () => {
           }
           // console.log(data);
           if (data) setIsLoading(false);
-          setUserData(data);
           setData(data);
         });
     } catch (error) {
@@ -52,25 +72,98 @@ const Dashboard = () => {
     }
   }, []);
 
-  console.log(userData);
-
+  // useEffect(() => {
+  //   setData(userData)
+  //   if (data) setIsLoading(false)
+  // },[])
   const openMobileNavbarClick = () => {
-    // console.log("lol")
+    // console.log("lol") 
     setMobileNavbar(!mobileNavbar);
   };
 
   const logoutClick = () => {
-    console.log("lol");
     cookies.remove(`ut`, { path: "/" });
-    setTimeout(() => {
+    console.log("lol");
+       setTimeout(() => {
       route.push("/");
     }, 2000);
   };
 
-  if (isLoading) return <h1> Please wait data is loading... </h1>;
+  useEffect(() => {
+    console.log(file)
+    if (file) {
+      submitAvatar(file)
+    }
+  }, [file])
 
+  const handleUserEdit = () => {
+    try {
+      fetch("http://localhost:4000/user/edit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          auth: token,
+        },
+        body: JSON.stringify({
+          name: data.name,
+          bio: data.bio,
+        }),
+      })
+        .then((res) => {
+          console.log(res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onfilechange = useCallback(e => setFile(e.target.files[0]), [file])
+
+  // console.log(file)
+  const submitAvatar = async (file) => {
+    
+
+    try {
+
+      console.log(file)
+
+      if (!file) return alert("why")
+
+
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      fetch("http://localhost:4000/user/update-avatar", {
+        method: "POST",
+        headers: {
+          auth: token,
+        },
+        body: formData,
+      }).then((res) => {
+        return res.json()
+      })
+      .then((data) => {
+        console.log(data)
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  if (isLoading) return <h1> Please wait data is loading... </h1>;
+  // console.log(image)
+  console.log('*********************')
+  console.log('*********************')
+  console.log(file)
+  console.log('*********************')
+  console.log('*********************')
   return (
     <>
+  
       <Image
         className={styles.backImage}
         src={background}
@@ -81,61 +174,101 @@ const Dashboard = () => {
       />
       <section className={styles.sideBar}>
         <div className={styles.avatarHolder}>
-          <Image
-            className={styles.avatar}
-            src={`${process.env.customeKey}/${userData.avatar}`}
-            loader={() =>
-              `${process.env.customeKey}/${userData.avatar}?w=${100}`
-            }
-            placeholder="blur"
-            blurDataURL={`${process.env.customeKey}/${userData.avatar}`}
-            width={50}
-            height={50}
-            onError={(e) =>
-              (e.target =
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkM9w2sPr7n7QFY9C9chGoe_pNV6pWJr0IoA&usqp=CAU")
-            }
+          <input
+            id="myInput"
+            className={styles.inpFile}
+            onChange={onfilechange}
+            type="file"
           />
+          <label className={styles.label} htmlFor="myInput">
+            <Image
+              className={styles.avatar}
+              src={`${process.env.customeKey}/${data?.avatar}`}
+              loader={() => `${process.env.customeKey}/${data?.avatar}?w=${50}`}
+              placeholder="blur"
+              blurDataURL={`${process.env.customeKey}/${data?.avatar}`}
+              width={50}
+              height={50}
+            />
+          </label>
         </div>
 
         <div className={styles.profile}>
-          <h5>Name: {userData.name}</h5>
-          <h5>Username: {userData.username}</h5>
+          <div className={styles.nameHolder}>
+            <p>name:</p>
+            <input
+              className={styles.nameInp}
+              type="text"
+              maxLength={20}
+              value={data?.name}
+              onChange={(e) => setData({ ...data, name: e.target.value })}
+            />
+          </div>
+          <div className={styles.usernameHolder}>
+            <p>Username:</p>
+            <input
+              className={styles.usernameInp}
+              type="text"
+              value={data?.username}
+              onChange={(e) => setData({ ...data, username: e.target.value })}
+            />
+          </div>
         </div>
 
         <div className={styles.menuIcon}>
           <MenuIcon onClick={() => openMobileNavbarClick()} fontSize="large" />
         </div>
 
+        <div className={styles.bioHolder}>
+          <p>Bio:</p>
+          <textarea
+            className={styles.bioInp}
+            type="text"
+            value={data?.bio}
+            onChange={(e) => setData({ ...data, bio: e.target.value })}
+            maxLength={100}
+          />
+        </div>
+
+        <button onClick={() => handleUserEdit()} className={styles.editBtn}>
+          Edit
+        </button>
+
+
+        <button
+          className={styles.profBtn}
+        >
+          change profile
+        </button>
+
         {mobileNavbar ? (
           <>
             <div className={styles.mobileNav}>
               <ul className={styles.mobileUl}>
-                <Link href="/dashboard/user">
-                  <li>User </li>
-                </Link>
                 <Link href="/dashboard/newblog">
                   <li>New Blog </li>
                 </Link>
-                <Link href="/dashboard/blogsdashboard">
+                <Link href="/dashboard/dashboardblogs">
                   <li>My Blogs </li>
+                </Link>
+                <Link href="/">
+                  <li>Home </li>
                 </Link>
               </ul>
             </div>
           </>
         ) : null}
       </section>
-
       <section className={styles.desktapNav}>
         <ul className={styles.desktapUl}>
-          <Link href="/dashboard/user">
-            <li>User </li>
-          </Link>
           <Link href="/dashboard/newblog">
             <li>New Blog </li>
           </Link>
           <Link href="/dashboard/dashboardblogs">
             <li>My Blogs </li>
+          </Link>
+          <Link href="/">
+            <li>Home </li>
           </Link>
         </ul>
       </section>
@@ -144,6 +277,7 @@ const Dashboard = () => {
         fontSize="large"
         className={styles.logoutIcon}
       />
+      {/* <User data={data} />; */}
     </>
   );
 };

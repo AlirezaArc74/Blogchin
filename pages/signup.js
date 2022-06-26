@@ -1,10 +1,11 @@
 import styles from "../styles/Signup.module.css";
-// import logBack from "../public/loginBackground.jpg";
 import { useEffect, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useRouter } from "next/router";
 import Cookies from "universal-cookie";
 import Image from "next/image";
+import { InputAdornment, FormControl, Input } from "@mui/material";
+
 const axios = require("axios");
 
 const SignUp = (blogUser) => {
@@ -12,19 +13,17 @@ const SignUp = (blogUser) => {
   const [signupNameInput, setSignupNameInput] = useState("");
   const [signupPasswordInput, setSignupPasswordInput] = useState("");
   const [visibility, setVisibility] = useState(false);
-  const [isUserLogedIn, setIsUserLogedIn] = useState("")
-
+  const [isUserLogedIn, setIsUserLogedIn] = useState("");
 
   const route = useRouter();
   const cookies = new Cookies();
-  const token = cookies.get("ut")
+  const token = cookies.get("ut");
 
-useEffect(() => {
-  setIsUserLogedIn(token)
-},[token])
+  useEffect(() => {
+    setIsUserLogedIn(token);
+  }, [token]);
 
-// {isUserLogedIn ?  route.push("/") : <h1>Loadin</h1>}
-if (isUserLogedIn) route.push("/dashboard")
+  if (isUserLogedIn) route.push("/dashboard");
 
   const signupSubmit = async () => {
     axios
@@ -34,13 +33,13 @@ if (isUserLogedIn) route.push("/dashboard")
       })
       .then((res) => {
         console.log(res.data.token);
-        cookies.set("ut", res.data.token)
+        cookies.set("ut", res.data.token);
       })
       .catch((error) => console.log(error));
     setSignupUsernameInput("");
     setSignupNameInput("");
     setSignupPasswordInput("");
-    route.push('/login')
+    route.push("/login");
   };
 
   console.log(signupUsernameInput, signupNameInput);
@@ -53,14 +52,6 @@ if (isUserLogedIn) route.push("/dashboard")
     <>
       <section className={styles.imageContainer}>
         <Image src="/images/loginBackground.jpg" layout="fill" />
-        {/* <div
-          className={styles.image}
-          style={{
-            backgroundImage: `url(${logBack.src})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        ></div> */}
       </section>
 
       <section className={styles.signup}>
@@ -81,20 +72,31 @@ if (isUserLogedIn) route.push("/dashboard")
             className={styles.nameInput}
           />
 
-          <input
-            onChange={(e) => setSignupPasswordInput(e.target.value)}
-            value={signupPasswordInput}
-            type={visibility ? "text" : "password"}
-            placeholder="Password"
-            className={styles.passwordInput}
-          />
-
-          <VisibilityIcon
-            onClick={() => {
-              visibilityIconClick();
-            }}
-            className={styles.visibilityIcon}
-          />
+          <FormControl sx={{ m: 0.5, width: "18ch" }} variant="standard" auto>
+            <Input
+              autoFocus="true"
+              className={styles.passwordInput}
+              placeholder="Password"
+              required="true"
+              autoComplete="new-password"
+              disableUnderline={true}
+              id="standard-adornment-password"
+              type={visibility ? "text" : "password"}
+              value={signupPasswordInput}
+              onChange={(e) => setSignupPasswordInput(e.target.value)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <VisibilityIcon
+                    className={styles.visibilityIcon}
+                    fontSize="large"
+                    onClick={() => {
+                      visibilityIconClick();
+                    }}
+                  />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
 
           <br />
           <button className={styles.btn} onClick={() => signupSubmit()}>

@@ -13,7 +13,7 @@ const Login = () => {
   const route = useRouter();
   const token = cookies.get("ut");
 
-  // console.log(token)
+  console.log(token)
 
   useEffect(() => {
     setIsUserLoggedIn(token)

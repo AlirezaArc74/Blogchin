@@ -2350,6 +2350,11 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
+"tinymce@^6.0.3":
+  "integrity" "sha512-4cu80kWF7nRGhviE10poZtjTkl3jNL+lycilCMfdm3KU5V7FtiQQrKbEo6GInXT05RY78Ha/NFP0gOBELcSpfg=="
+  "resolved" "https://registry.npmjs.org/tinymce/-/tinymce-6.0.3.tgz"
+  "version" "6.0.3"
+
 "to-fast-properties@^2.0.0":
   "integrity" "sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog=="
   "resolved" "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz"
