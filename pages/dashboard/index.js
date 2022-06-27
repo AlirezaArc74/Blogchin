@@ -72,12 +72,8 @@ const Dashboard = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   setData(userData)
-  //   if (data) setIsLoading(false)
-  // },[])
+ 
   const openMobileNavbarClick = () => {
-    // console.log("lol") 
     setMobileNavbar(!mobileNavbar);
   };
 
@@ -155,12 +151,7 @@ const Dashboard = () => {
   }
 
   if (isLoading) return <h1> Please wait data is loading... </h1>;
-  // console.log(image)
-  console.log('*********************')
-  console.log('*********************')
-  console.log(file)
-  console.log('*********************')
-  console.log('*********************')
+ 
   return (
     <>
   

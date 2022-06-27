@@ -5,6 +5,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import Cookies from "universal-cookie";
 import Image from "next/image";
 import { InputAdornment, FormControl, Input } from "@mui/material";
+import { Toaster } from "react-hot-toast";
+import { ErrorToast, SuccessToast } from "../components/Toast";
 
 const axios = require("axios");
 
@@ -13,9 +15,6 @@ const Login = () => {
   const [loginPasswordInput, setLoginPasswordInput] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [isUserLogedIn, setIsUserLogedIn] = useState("");
-
-  // const { token, setToken } = AllState();
-
   const route = useRouter();
   const cookies = new Cookies();
   const token = cookies.get("ut");
@@ -39,9 +38,12 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         cookies.set("ut", res.data.token);
-        setToken(rea?.data?.token);
+        if(res.data.token) SuccessToast("Success")
       })
       .catch((error) => {
+        if (error.response.data.msg === "bad request: no such user exists") ErrorToast("no such user exists")
+        if (error.response.data.msg === "password doesnt match") ErrorToast("password doesnt match")
+        if (error.response.data.msg === "bad inputs") ErrorToast("Please enter your username")
         console.log(error);
       });
     setLoginPasswordInput("");
@@ -49,24 +51,13 @@ const Login = () => {
     setTimeout(() => {
       route.push("/dashboard");
     }, 2000);
-
-    console.log(token);
-    // const boro = () => {
-    // }
   };
 
   return (
     <>
+    <Toaster />
       <section>
         <Image src="/images/loginBackground.jpg" layout="fill" />
-        {/* <div
-          className={styles.image}
-          style={{
-            backgroundImage: `url(${logBack.src})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        ></div> */}
       </section>
 
       <section className={styles.login}>
@@ -79,22 +70,7 @@ const Login = () => {
             placeholder="Username"
             className={styles.usernameInput}
           />
-          {/* <input
-            onChange={(e) => setLoginPasswordInput(e.target.value)}
-            value={loginPasswordInput}
-            type={visibility ? "text" : "password"}
-            placeholder="Password"
-            className={styles.passwordInput}
-            disableUnderline={true}
-          />
-          <VisibilityIcon
-              onClick={() => {
-                visibilityIconClick();
-              }}
-              className={styles.visibilityIcon}
-            /> */}
           <FormControl
-            // className={styles.passwordInput}
             sx={{ m: 0.5, width: "18ch" }}
             variant="standard"
             auto
