@@ -1,0 +1,68 @@
+.main {
+  margin: 10px;
+  /* background-color: red; */
+  height: 100vh;
+}
+
+.image {
+  width: 130px;
+  height: 250px;
+  margin-bottom: 80px;
+  cursor: pointer;
+}
+
+.title {
+  width: 130px;
+  /* background-color: orange; */
+  height: 80px;
+  overflow: scroll;
+  margin-bottom: 40px;
+}
+
+.icons {
+    position: relative;
+  /* background-color: blue; */
+  bottom: 50px;
+  /* cursor: pointer; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.icon {
+    cursor: pointer;
+   /* fill: red; */
+   /* background-color: blue; */
+}
+
+/* .swiperSlider {
+} */
+
+@media screen and (min-width: 720px) {
+    .image {
+        width: 250px;
+    }
+
+    .title {
+        font-size: 20px;
+        width: 250px;
+    }
+    
+}
+
+@media screen and (min-width: 1024px) {
+    .image {
+        width: 360px;
+    }
+
+    .title {
+        font-size: 26px;
+        width: 360px;
+    }
+
+    .icons {
+        /* background-color: red; */
+        width: 300px;
+        left: 15px;
+    }
+    
+}

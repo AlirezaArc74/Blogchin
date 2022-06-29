@@ -1,0 +1,94 @@
+.main {
+    position: relative;
+    -color: red;
+    top: 210px;
+    height: 650px;
+}
+
+.title {
+    -color: blue;
+    width: 80%;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 38px;
+    text-align: center;
+    background-color: var(--sefid-color);
+}
+
+.image {
+    position: absolute;
+    top: 150px;
+    width: 80%;
+    left: 40px;
+}
+
+.content {
+    background-color: var(--sefid-color);
+    position: absolute;
+    top: 370px;
+    left: 40px;
+    width: 80%;
+    height: 200px;
+    overflow: scroll;
+}
+
+.star {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+}
+
+.Editbtn {
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
+    padding: 5px;
+    width: 120px;
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: var(--soremei-ghavi);
+    color: var(--sefid-color);
+}
+
+.Editbtn:hover {
+    background-color: var(--narenji);
+    color: var(--soremei-ghavi);
+}
+
+@media screen and (min-width: 720px) {
+    .main {
+        position: relative;
+        left: 340px;
+        top: 10px;
+        width: 50%;
+        height: 800px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .main {
+        position: relative;
+        width: 800px;
+        left: 450px;
+
+    }
+
+    .title {
+        width: 700px;
+    }
+
+    .image {
+        position: absolute;
+        top: 80px;
+        width: 700px;
+    }
+
+    .content {
+        -color: orange;
+        position: absolute;
+        top: 520px;
+        width: 700px;
+    }
+    
+}

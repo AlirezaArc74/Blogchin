@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <>
       {isUserLoggedIn ? (
-        <section className={styles.tokenExist}>hello</section>
+        null
       ) : (
         <section className={styles.main}>
           <h2 className={styles.loginHeader}>

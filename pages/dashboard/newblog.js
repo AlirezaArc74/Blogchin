@@ -49,12 +49,12 @@ const NewBlog = () => {
         ></script>
       </Head>
       <section className={styles.main}>
+        <div className={styles.tyni}>
         <Editor
-          className={styles.tyni}
           onInit={(evt, editor) => (editorRef.current = editor)}
           init={{
-            width: 365,
-            height: 300,
+            width: "100%",
+            height: 350,
             menubar: false,
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",
@@ -70,7 +70,10 @@ const NewBlog = () => {
               "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           }}
         />
-        <div className={styles.inpAndbtn}>
+        </div>
+      </section>
+
+      <section className={styles.inputs}>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -91,8 +94,7 @@ const NewBlog = () => {
           <button onClick={() => submitEssay()} className={styles.button}>
             submit
           </button>
-        </div>
-      </section>
+        </section>
     </>
   );
 };

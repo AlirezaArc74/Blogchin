@@ -134,6 +134,7 @@
 
   .desktapUl {
     font-size: 25px;
+    
   }
   .welcome {
     /* background-color: red; */
@@ -141,4 +142,13 @@
     width: 20rem;
   }
   
+}
+
+@media screen and (min-width: 1024px) {
+  .desktapUl {
+    /* background-color: red; */
+    width: 400px;
+    position: absolute;
+    right: 450px;
+  }
 }

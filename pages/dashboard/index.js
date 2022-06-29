@@ -7,7 +7,6 @@ import background from "./../../public/images/dashboard.jpg";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
-import { AllState } from "../../UserContext";
 
 // export const getServerSideProps = async ({req, response}) => {
 
@@ -30,6 +29,10 @@ import { AllState } from "../../UserContext";
 //       props: {userData: data}
 //     }
 // }
+
+// const UID = () => {
+//   return new Date().getTime() + String(Math.random()).slice(3, 9);
+// };
 
 const Dashboard = () => {
   const [mobileNavbar, setMobileNavbar] = useState(false);
@@ -86,7 +89,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    console.log(file)
+    // console.log(file)
     if (file) {
       submitAvatar(file)
     }

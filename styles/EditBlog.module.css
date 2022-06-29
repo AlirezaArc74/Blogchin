@@ -1,0 +1,93 @@
+.main {
+    /* background-color: red; */
+    position: relative;
+    top: 220px;
+    left: 25px;
+    width: fit-content;
+} 
+
+.tiny {
+  width: 360px;
+}
+
+.inputs {
+    position: absolute;
+    /* background-color: red; */
+    bottom: 120px;
+    left: 40px;
+}
+
+.input {
+    background-color: var(--sormei-yavash);
+    margin: 10px;
+    margin-bottom: 35px;
+    padding: 10px;
+    width: 290px;
+    border: 1px solid black;
+    border-radius: 50px;
+    outline: none;
+    padding-left: 12px;
+    color: var(--sefid-color);
+  }
+  
+  .input:focus {
+    background-color: var(--narenji);
+    color: var(--soremei-ghavi);
+  }
+  
+  .button {
+    background-color: var(--sormei-yavash);
+    margin: 10px;
+    padding: 10px;
+    width: 290px;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding-left: 12px;
+    color: var(--sefid-color);
+  }
+  
+  .button:hover {
+    background-color: var(--narenji);
+    color: var(--soremei-ghavi);
+  }
+  
+  @media screen and (min-width: 500px) {
+    .main {
+      position: relative;
+      width: 370px;
+      left: 70px;
+    }
+    .inputs {
+        left: 120px;
+    }
+  }
+  
+  @media screen and (min-width: 590px) {
+    .main {
+      position: relative;
+      width: 220px;
+      left: 350px;
+      top: 20px;
+    }
+
+    .tiny {
+      width: 550px;
+      /* height: 500px; */
+    }
+  
+  }
+  
+  @media screen and (min-width: 720px) {
+    .input {
+      padding: 10px;
+      width: 300px;
+    }
+    
+
+    .inputs {
+        left: 360px;
+    }
+    .tiny {
+      width: 850px;
+    }
+  }
