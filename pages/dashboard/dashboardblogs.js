@@ -8,42 +8,67 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import styles from "../../styles/DashboardBlog.module.css";
 import Link from "next/link";
 
-export const getServerSideProps = async ({ req, response }) => {
-  console.log("hello");
-  const cookies = new Cookies(req.headers.cookie);
-  const token = `ut ${cookies.get("ut")}`;
-  console.log(token);
-  const res = await fetch("http://localhost:4000/blog/my-blogs", {
-    method: "GET",
-    headers: {
-      auth: token,
-    },
-  });
+// export const getServerSideProps = async ({ req, response }) => {
+//   console.log("hello");
+//   const cookies = new Cookies(req.headers.cookie);
+//   const token = `ut ${cookies.get("ut")}`;
+//   console.log(token);
+//   const res = await fetch("http://localhost:4000/blog/my-blogs", {
+//     method: "GET",
+//     headers: {
+//       auth: token,
+//     },
+//   });
 
-  const data = await res.json();
-  console.log(data);
-  const oldData = data.map((item) => {
-    return {
-      ...item,
-      isSelected: false,
-    };
-  });
-  return {
-    props: {
-      oldData,
-    },
-  };
-};
+//   const data = await res.json();
+//   console.log(data);
+//   const oldData = data.map((item) => {
+//     return {
+//       ...item,
+//       isSelected: false,
+//     };
+//   });
+//   return {
+//     props: {
+//       oldData,
+//     },
+//   };
+// };
 
-const Dashboardblogs = ({ oldData }) => {
-  const [data, setData] = useState();
+const Dashboardblogs = () => {
+  const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   setData(oldData);
+  // }, []);
+  const cookie = new Cookies();
+  const token = `ut ${cookie.get("ut")}`;
+
   useEffect(() => {
-    setData(oldData);
+    try {
+      const fetchData = async () => {
+        const res = await fetch("http://localhost:4000/blog/my-blogs", {
+          method: "GET",
+          headers: {
+            auth: token,
+          },
+        });
+        const data = await res.json();
+        const oldData = data.map((item) => {
+          return {
+            ...item,
+            isSelected: false,
+          };
+        });
+        setData(oldData);
+      };
+
+      const result = fetchData();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
-  // console.log(oldData);
 
   const showTitle = (i) => {
-    console.log(i);
     const arr = [...data];
 
     const p = arr.findIndex((item, index) => index === i);
@@ -52,7 +77,6 @@ const Dashboardblogs = ({ oldData }) => {
 
     arr[p].isSelected = true;
 
-    console.log("yani chiii");
     setData(arr);
   };
 
@@ -68,7 +92,6 @@ const Dashboardblogs = ({ oldData }) => {
   };
 
   const click = () => {
-    console.log("lol");
   };
 
   return (
@@ -87,7 +110,7 @@ const Dashboardblogs = ({ oldData }) => {
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
         >
-          {data?.map((item, i) => {
+          {data.map((item, i) => {
             return (
               <SwiperSlide>
                 <div
@@ -103,9 +126,6 @@ const Dashboardblogs = ({ oldData }) => {
                   {item.isSelected ? (
                     <p className={styles.title}> {item.title} </p>
                   ) : null}
-
-                  {/* <p className={styles.title}> {item.title} </p> */}
-                  {/* {console.log(item.isSelected)} */}
                 </div>
               </SwiperSlide>
             );

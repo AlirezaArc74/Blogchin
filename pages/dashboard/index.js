@@ -90,7 +90,7 @@ const Dashboard = () => {
         if (data.msg === "Unauthorized") {
           return route.push("/login");
         }
-        console.log(data);
+        // console.log(data);
         if (data) setIsLoading(false);
         setData(data);
       };

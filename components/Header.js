@@ -9,6 +9,9 @@ const Header = () => {
     // console.log("lol")
     setMobileNavbar(!mobileNavbar);
   };
+  const handleCloseNavbar = () => {
+    setMobileNavbar(false);
+  };
   return (
     <>
       <section className={styles.main}>
@@ -23,13 +26,13 @@ const Header = () => {
             <div className={styles.mobileNav}>
               <ul className={styles.mobileUl}>
                 <Link href="/blogs">
-                  <li>Blogs </li>
+                  <li onClick={handleCloseNavbar}>Blogs </li>
                 </Link>
                 <Link href="/users">
-                  <li>Users </li>
+                  <li onClick={handleCloseNavbar}>Users </li>
                 </Link>
                 <Link href="/dashboard">
-                  <li>Dashboard </li>
+                  <li onClick={handleCloseNavbar}>Dashboard </li>
                 </Link>
               </ul>
             </div>

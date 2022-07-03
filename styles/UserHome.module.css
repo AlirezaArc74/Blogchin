@@ -1,17 +1,50 @@
 .image {
-    width: 100px;
-    border: 1px solid black;
-    border-radius: 50px;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 50px;
 }
 
 .container {
-    width: auto;
-    /* background-color: red; */
-    height: 100%;
+  /* width: 100%; */
+  width: auto;
+  /* background-color: red; */
+  height: 100%;
+  margin: 20px;
 }
 
 .card {
-    /* width: 50px; */
-    /* background-color: blue; */
-    margin: 10px;
+  /* width: 95%; */
+  height: 90%;
+  display: flex;
+  border: 1px solid black;
+  padding: 10px;
+  /* background-color: blue; */
+  margin: 10px;
+  position: relative;
+}
+
+.btn {
+  width: 100px;
+  /* background-color: green; */
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.asl {
+    /* background-color: orange; */
+    width: 60%;
+    margin-left: 10px;
+}
+
+
+@media screen and (min-width: 720px) {
+    .container {
+        display: grid;
+        grid-template-columns: auto auto ;
+        gap: 20px;
+    }
+    
+    
+    
 }
