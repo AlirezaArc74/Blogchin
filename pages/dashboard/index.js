@@ -37,7 +37,7 @@ import { useRouter } from "next/router";
 const Dashboard = () => {
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
   const [file, setFile] = useState(null);
 
   const cookies = new Cookies();
@@ -49,33 +49,59 @@ const Dashboard = () => {
   //   if(!token) return route.push('/')
   // },[])
 
+  // useEffect(() => {
+  //   try {
+  //     fetch("http://localhost:4000/user/me", {
+  //       method: "POST", // or 'PUT'
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         auth: token,
+  //       },
+  //       body: JSON.stringify({}),
+  //     })
+  //       .then((response) => {
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         if (data.msg === "Unauthorized") {
+  //           return route.push("/login");
+  //         }
+  //         // console.log(data);
+  //         if (data) setIsLoading(false);
+  //         setData(data);
+  //       });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
+
   useEffect(() => {
     try {
-      fetch("http://localhost:4000/user/me", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-          auth: token,
-        },
-        body: JSON.stringify({}),
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          if (data.msg === "Unauthorized") {
-            return route.push("/login");
-          }
-          // console.log(data);
-          if (data) setIsLoading(false);
-          setData(data);
+      const fetchData = async () => {
+        const res = await fetch("http://localhost:4000/user/me", {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+            auth: token,
+          },
+          body: JSON.stringify({}),
         });
+        const data = await res.json();
+        if (data.msg === "Unauthorized") {
+          return route.push("/login");
+        }
+        console.log(data);
+        if (data) setIsLoading(false);
+        setData(data);
+      };
+
+      const result = fetchData()
+
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  },[]);
 
- 
   const openMobileNavbarClick = () => {
     setMobileNavbar(!mobileNavbar);
   };
@@ -83,7 +109,7 @@ const Dashboard = () => {
   const logoutClick = () => {
     cookies.remove(`ut`, { path: "/" });
     console.log("lol");
-       setTimeout(() => {
+    setTimeout(() => {
       route.push("/");
     }, 2000);
   };
@@ -91,9 +117,9 @@ const Dashboard = () => {
   useEffect(() => {
     // console.log(file)
     if (file) {
-      submitAvatar(file)
+      submitAvatar(file);
     }
-  }, [file])
+  }, [file]);
 
   const handleUserEdit = () => {
     try {
@@ -120,18 +146,14 @@ const Dashboard = () => {
     }
   };
 
-  const onfilechange = useCallback(e => setFile(e.target.files[0]), [file])
+  const onfilechange = useCallback((e) => setFile(e.target.files[0]), [file]);
 
   // console.log(file)
   const submitAvatar = async (file) => {
-    
-
     try {
+      console.log(file);
 
-      console.log(file)
-
-      if (!file) return alert("why")
-
+      if (!file) return alert("why");
 
       const formData = new FormData();
       formData.append("avatar", file);
@@ -142,22 +164,22 @@ const Dashboard = () => {
           auth: token,
         },
         body: formData,
-      }).then((res) => {
-        return res.json()
       })
-      .then((data) => {
-        console.log(data)
-      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+        });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   if (isLoading) return <h1> Please wait data is loading... </h1>;
- 
+
   return (
     <>
-  
       <Image
         className={styles.backImage}
         src={background}
@@ -228,12 +250,7 @@ const Dashboard = () => {
           Edit
         </button>
 
-
-        <button
-          className={styles.profBtn}
-        >
-          change profile
-        </button>
+        <button className={styles.profBtn}>change profile</button>
 
         {mobileNavbar ? (
           <>

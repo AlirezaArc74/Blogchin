@@ -1,5 +1,5 @@
 .main {
-  position: absolute;
+  /* position: absolute; */
   background-color: var(--sormei-yavash);
   width: 100%;
   bottom: 100px;
@@ -10,7 +10,10 @@
   font-weight: bold;
   text-align: center;
   margin-left: 2rem;
-  margin-top: 1rem;
+  /* background-color: red; */
+  /* margin-top: 15px; */
+  position: relative;
+  top: 15px;
   width: 20rem;
   font-size: 17px;
 }
